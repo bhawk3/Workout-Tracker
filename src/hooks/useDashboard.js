@@ -2,8 +2,8 @@
 import { useState, useEffect } from 'react';
 
 
-function useGetWorkoutData( ) {
-    const [workoutData, setWorkoutData] = useState(null);
+export default function useGetWorkoutData( ) {
+    const [workoutData, setWorkoutData] = useState([]);
 
     useEffect(() => {
         async function loadWorkouts() {
@@ -13,7 +13,10 @@ function useGetWorkoutData( ) {
                 setWorkoutData(JSON.parse(stored))
         } else {
 
-            const res = await fetch('/public/data.json')
+            const res = await fetch('/data.json')
+             if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
             const data = await res.json()
                     setWorkoutData(data.workouts)
                     localStorage.setItem("workoutData", JSON.stringify(data.workouts))                    
