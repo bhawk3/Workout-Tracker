@@ -5,8 +5,10 @@ import './App.css'
 function App() {
   const { workoutData } = useGetWorkoutData()
 
-//      console.log({workoutData})
 
+
+
+  
   return (
     <>
       <section id="center">
@@ -15,35 +17,24 @@ function App() {
 
         </div>
       </section>
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Exercise</th>
-            <th>Sets</th>
-            <th>Reps</th>
-            <th>Weight</th>
-          </tr>
-        </thead>
-        <tbody>
+      <div id="dashboard-container" >
           {workoutData.map((workout) => (
-            <>
-              <tr key={`${workout.date}-header`} className="date-row">
-                <td colSpan={5}>{workout.date}</td>
-              </tr>
+            <div id="dashboard-card" key={workout.date}>
+                <p >{workout.date}</p>
+             
               {workout.exercises.map((exercise) => (
-                <tr key={exercise.id}>
-                  <td />
-                  <td>{exercise.name}</td>
-                  <td>{exercise.sets}</td>
-                  <td>{exercise.reps}</td>
-                  <td>{exercise.weight}</td>
-                </tr>
+                <div key={exercise.id} id="dashboard">
+                  <p>{exercise.name}</p>
+                  <p> &nbsp; Sets: {exercise.sets}</p>
+                  <p> &nbsp; Reps: {exercise.reps}</p>
+                  <p> &nbsp; Weight: {exercise.weight}</p>
+                  <button>Edit</button>
+                  <button>Delete</button>
+                </div>
               ))}
-            </>
+            </div>
           ))}
-        </tbody>
-      </table>
+      </div>
 
     </>
   )
