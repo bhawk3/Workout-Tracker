@@ -5,10 +5,10 @@ import './App.css'
 function App() {
   const { workoutData } = useGetWorkoutData()
 
-
-
-
   
+
+
+
   return (
     <>
       <section id="center">
@@ -32,6 +32,7 @@ function App() {
                   <button>Delete</button>
                 </div>
               ))}
+              <button>Add Exercise</button>
             </div>
           ))}
       </div>
