@@ -3,21 +3,51 @@ import { useState } from "React"
 import "../Form.css"
 
 
+//I need to save the form data to local storage 
+// then update the DOM state with the local storage data
+
 const Form = () => {
 
 const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
 
-    function formEvent(e) {
+    async function formEvent(e) {
         e.preventDefault()
-
-        const formData = new FormData(e.currentTarget)
+        const form = e.currentTarget
+        const formData = new FormData(form)
         const formValues = Object.fromEntries(formData)
-        console.log(formValues)
-    }
+        //console.log(formValues)
+        try {
+            const fetchedData = await fetch('/data.json', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(formValues)
+            })
+            if (!fetchedData.ok) {
+                throw new Error(`HTTP error! Status: ${fetchedData.status}`);
+            }
+             const result = await fetchedData.json();
+            console.log('Success:', result);
 
+            //Reset form 3 seconds after submission
+            setSubmitMessageToggled(true)
+            setTimeout(() => {
+
+            form.reset()
+            setSubmitMessageToggled(false)
+                        }, 3000)
+
+        } 
+
+        catch (error) {
+              console.error('Error posting data:', error);
+
+    }
+     }
   return (
     <div>
-        <form onSubmit={formEvent}  >
+        <form onSubmit={formEvent}   >
             <div className="form-group">
                 <label>Date</label>
                 <input type="date" name="date" required></input>
