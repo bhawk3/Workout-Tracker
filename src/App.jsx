@@ -1,5 +1,6 @@
 
 import useGetWorkoutData from './hooks/useDashboard'
+import Form from './components/Form.jsx'
 import './App.css'
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
       <section id="center">
         <div className="hero">
           <h1>Workout Tracker</h1>
-
+<Form />
         </div>
       </section>
       <div id="dashboard-container" >

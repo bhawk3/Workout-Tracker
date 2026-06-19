@@ -4,5 +4,17 @@ import { useState } from 'react';
 export default function useWorkout(initialData = []) {
 
     const [workoutInfo, setWorkoutInfo] = useState([])
+    //log new day
+  const newDay = (day) => {
+    // Automatically returns the new array to become the state
+    setWorkoutInfo(prev => [...prev, day]);
+};
+
 }
 
+//Add new workout day object to the Workouts array 
+
+// get the new workout
+//take new workout and .push into the workouts array
+//return the new array
+//update state
