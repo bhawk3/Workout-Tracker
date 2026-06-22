@@ -28,7 +28,11 @@ const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
                 throw new Error(`HTTP error! Status: ${fetchedData.status}`);
             }
              const result = await fetchedData.json();
+            localStorage.setItem("New Workout", JSON.stringify(formValues))
+
             console.log('Success:', result);
+
+            
 
             //Reset form 3 seconds after submission
             setSubmitMessageToggled(true)
