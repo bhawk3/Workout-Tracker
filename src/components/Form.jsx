@@ -1,5 +1,4 @@
-
-import { useState } from "React"
+import { useState } from "react"
 import "../Form.css"
 
 
@@ -28,7 +27,20 @@ const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
                 throw new Error(`HTTP error! Status: ${fetchedData.status}`);
             }
              const result = await fetchedData.json();
-            localStorage.setItem("New Workout", JSON.stringify(formValues))
+
+             /*
+             On Page Load: Fetch the JSON exercises and get the Local Storage exercises. 
+             Combine them into one master array, then render them to the DOM.
+            
+             On Form Submit: Save only the new custom exercise to Local Storage (inside an array). 
+             Do not touch the original JSON file.
+             
+             Refresh: Re-render the combined list.
+             
+             */
+             localStorage.getItem("workoutData")
+
+             localStorage.setItem("New Workout", JSON.stringify(formValues))
 
             console.log('Success:', result);
 
