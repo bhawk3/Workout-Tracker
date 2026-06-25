@@ -38,9 +38,15 @@ const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
              Refresh: Re-render the combined list.
              
              */
-             localStorage.getItem("workoutData")
+             const dataFileValues = localStorage.getItem("workoutData")
+             const localFiles = dataFileValues ? JSON.parse(dataFileValues) : []
 
-             localStorage.setItem("New Workout", JSON.stringify(formValues))
+        
+
+            let updatedFormData = Object.fromEntries(formData)
+             const existingData = [updatedFormData, ...localFiles]
+
+             localStorage.setItem("New Workout", JSON.stringify(existingData))
 
             console.log('Success:', result);
 
