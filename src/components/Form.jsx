@@ -5,6 +5,14 @@ import "../Form.css"
 //I need to save the form data to local storage 
 // then update the DOM state with the local storage data
 
+  
+function saveNewWorkout(workout) {
+  const saved = localStorage.getItem("New Workout")
+  const workouts = saved ? JSON.parse(saved) : []
+  workouts.push(workout)
+  localStorage.setItem("New Workout", JSON.stringify(workouts))
+}
+
 const Form = () => {
 
 const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
@@ -38,16 +46,9 @@ const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
              Refresh: Re-render the combined list.
              
              */
-             const dataFileValues = localStorage.getItem("workoutData")
-             const localFiles = dataFileValues ? JSON.parse(dataFileValues) : []
+              
 
-        
-
-            let updatedFormData = Object.fromEntries(formData)
-             const existingData = [updatedFormData, ...localFiles]
-
-             localStorage.setItem("New Workout", JSON.stringify(existingData))
-
+            saveNewWorkout(formValues) 
             console.log('Success:', result);
 
             
