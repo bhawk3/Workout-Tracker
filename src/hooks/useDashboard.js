@@ -9,7 +9,7 @@ export default function useGetWorkoutData( ) {
         async function loadWorkouts() {
            const stored = localStorage.getItem('workoutData')
 
-        if (stored){
+        if (stored) {
                 setWorkoutData(JSON.parse(stored))
         } else {
 
