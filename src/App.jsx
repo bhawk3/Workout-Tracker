@@ -5,9 +5,9 @@ import './App.css'
 
 function App() {
   const { workoutData } = useGetWorkoutData()
-
+  let newWorkoutData = workoutData
   
-
+console.log('workoutData from App.jsx:', newWorkoutData)
 
 
   return (
@@ -19,7 +19,7 @@ function App() {
         </div>
       </section>
       <div id="dashboard-container" >
-          {workoutData.map((workout) => (
+          {newWorkoutData.map((workout) => (
             <div id="dashboard-card" key={workout.date}>
                 <p >{workout.date}</p>
              
