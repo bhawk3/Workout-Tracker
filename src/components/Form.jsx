@@ -1,20 +1,21 @@
 
 import { useState } from "react"
+import { uploadDataToFirestore } from "../hooks/useDataBase.js"
 import "../Form.css"
 
 
 
 
-//I need to save the form data to local storage 
-// then update the DOM state with the local storage data
-
+//The form data is not functioning because I am not saving to localStorage anymore
+//It is still logging though, which is good.
   
-function saveNewWorkout(workout) {
+/*function saveNewWorkout(workout) {
   const saved = localStorage.getItem("New Workout")
   const workouts = saved ? JSON.parse(saved) : []
   workouts.push(workout)
+  console.log(workouts)
   localStorage.setItem("New Workout", JSON.stringify(workouts))
-}
+}*/
 
 const Form = () => {
 
@@ -27,7 +28,9 @@ const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
         const formValues = Object.fromEntries(formData)
         //console.log(formValues)
         try {
-            const fetchedData = await fetch('/data.json', {
+
+            let result = await uploadDataToFirestore(form.newExercise.value)
+            /*const fetchedData = await fetch('/data.json', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -38,7 +41,7 @@ const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
                 throw new Error(`HTTP error! Status: ${fetchedData.status}`);
             }
              const result = await fetchedData.json();
-
+*/
              /*
              On Page Load: Fetch the JSON exercises and get the Local Storage exercises. 
              Combine them into one master array, then render them to the DOM.
@@ -51,7 +54,7 @@ const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
              */
               
 
-            saveNewWorkout(formValues) 
+            //saveNewWorkout(formValues) 
             console.log('Success:', result);
 
             

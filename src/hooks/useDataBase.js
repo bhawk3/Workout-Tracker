@@ -40,4 +40,17 @@ const UseDataBase = async () => {
 
 }
 
-export {UseDataBase}
+const uploadDataToFirestore = async (newExercise) => {
+    const docRef = doc(db, "Workouts", "eUqAK4cACxsatLZ4wtN0")
+    let result = await updateDoc(docRef, {
+        date: newExercise.date/*idk what to put here*/,
+        name: newExercise.name,
+        sets: parseInt(newExercise.sets),
+        reps: parseInt(newExercise.reps),
+        weight: parseInt(newExercise.weight)
+
+    })
+    return newExercise
+}
+
+export {UseDataBase, uploadDataToFirestore};
