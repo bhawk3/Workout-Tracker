@@ -29,7 +29,7 @@ const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
         //console.log(formValues)
         try {
 
-            let result = await uploadDataToFirestore(form.newExercise.value)
+            let result = await uploadDataToFirestore(formValues)
             /*const fetchedData = await fetch('/data.json', {
                 method: 'POST',
                 headers: {
