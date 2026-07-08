@@ -40,14 +40,20 @@ const UseDataBase = async () => {
 
 }
 
+
+/* The form input isnt being saved to Exercises. I think its bc 
+the form input is an obj and Exercises is an array. I need to 
+figure out how to push the form input into the Exercises array.
+-stick with the Map data type in FB
+*/
 const uploadDataToFirestore = async (newExercise) => {
     const docRef = doc(db, "Workouts", "eUqAK4cACxsatLZ4wtN0")
     let result = await updateDoc(docRef, {
-        date: newExercise.date/*idk what to put here*/,
-        name: newExercise.name,
-        sets: parseInt(newExercise.sets),
-        reps: parseInt(newExercise.reps),
-        weight: parseInt(newExercise.weight)
+        "Exercises.date": newExercise.date,
+        "Exercises.name": newExercise.name,
+        "Exercises.sets": parseInt(newExercise.sets),
+        "Exercises.reps": parseInt(newExercise.reps),
+        "Exercises.weight": parseInt(newExercise.weight)
 
     })
     return newExercise
