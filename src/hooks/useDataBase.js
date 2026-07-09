@@ -45,15 +45,22 @@ const UseDataBase = async () => {
 the form input is an obj and Exercises is an array. I need to 
 figure out how to push the form input into the Exercises array.
 -stick with the Map data type in FB
+
+There is a problem with using UseDataBase() to get the length of Exercises. 
+Its returning NaN. I think its because UseDataBase() is async and the length 
+is being called before the data is returned. I need to figure out how to wait 
+for the data to be returned before getting the length.
 */
 const uploadDataToFirestore = async (newExercise) => {
     const docRef = doc(db, "Workouts", "eUqAK4cACxsatLZ4wtN0")
+    const nextIndex = (await UseDataBase()).length + 1;
+
     let result = await updateDoc(docRef, {
-        "Exercises.date": newExercise.date,
-        "Exercises.name": newExercise.name,
-        "Exercises.sets": parseInt(newExercise.sets),
-        "Exercises.reps": parseInt(newExercise.reps),
-        "Exercises.weight": parseInt(newExercise.weight)
+        [`Exercises.${nextIndex}.date`]: newExercise.date,
+        [`Exercises.${nextIndex}.name`]: newExercise.name,
+        [`Exercises.${nextIndex}.sets`]: parseInt(newExercise.sets),
+        [`Exercises.${nextIndex}.reps`]: parseInt(newExercise.reps),
+        [`Exercises.${nextIndex}.weight`]: parseInt(newExercise.weight)
 
     })
     return newExercise
