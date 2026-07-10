@@ -7,8 +7,8 @@ function App() {
   const { workoutData } = useGetWorkoutData()
   let newWorkoutData = workoutData
   
-console.log('workoutData from App.jsx:', newWorkoutData)
-
+console.log('workoutData from App.jsx:', typeof newWorkoutData)
+//Left off working on updating DOM from DB
 
   return (
     <>
@@ -19,7 +19,7 @@ console.log('workoutData from App.jsx:', newWorkoutData)
         </div>
       </section>
       <div id="dashboard-container" >
-          {newWorkoutData.map((workout) => (
+          {Object.entries(newWorkoutData).map((workout) => (
             <div id="dashboard-card" key={workout.date}>
                 <p >{workout.date}</p>
              
