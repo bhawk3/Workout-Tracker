@@ -19,12 +19,12 @@ console.log('workoutData from App.jsx:', typeof newWorkoutData)
         </div>
       </section>
       <div id="dashboard-container" >
-          {Object.entries(newWorkoutData).map((workout) => (
-            <div id="dashboard-card" key={workout.date}>
-                <p >{workout.date}</p>
+          {Object.entries(newWorkoutData).map(([date, exercises]) => (
+            <div id="dashboard-card" key={date}>
+                <p >{date}</p>
              
-              {workout.exercises.map((exercise) => (
-                <div key={exercise.id} id="dashboard">
+              {Object.entries(exercises).map(([exerciseId, exercise]) => (
+                <div key={exerciseId} id="dashboard">
                   <p>{exercise.name}</p>
                   <p> &nbsp; Sets: {exercise.sets}</p>
                   <p> &nbsp; Reps: {exercise.reps}</p>
