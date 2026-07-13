@@ -10,7 +10,7 @@
 #dashboard-card {
   background-color: #f0f0f0;
   width: 600px;
-  height: 200px;
+  height: auto;
   padding: 15px;
   border-radius: 10px;
   display: flex;
@@ -30,3 +30,4 @@
 button {
   margin-left: 10px;
 }
+

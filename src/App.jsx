@@ -7,9 +7,9 @@ function App() {
   const { workoutData } = useGetWorkoutData()
   let newWorkoutData = workoutData
   
-console.log('workoutData from App.jsx:', typeof newWorkoutData)
+console.log('workoutData from App.jsx:', newWorkoutData)
 //Left off working on updating DOM from DB
-
+//The DOM doesn't update on form submission
   return (
     <>
       <section id="center">
@@ -21,14 +21,13 @@ console.log('workoutData from App.jsx:', typeof newWorkoutData)
       <div id="dashboard-container" >
           {Object.entries(newWorkoutData).map(([date, exercises]) => (
             <div id="dashboard-card" key={date}>
-                <p >{date}</p>
-             
-              {Object.entries(exercises).map(([exerciseId, exercise]) => (
+                <p>{exercises.date}</p>
+              {Object.entries(exercises).map(([exerciseId]) => (
                 <div key={exerciseId} id="dashboard">
-                  <p>{exercise.name}</p>
-                  <p> &nbsp; Sets: {exercise.sets}</p>
-                  <p> &nbsp; Reps: {exercise.reps}</p>
-                  <p> &nbsp; Weight: {exercise.weight}</p>
+                  <p>&nbsp; Name: {exercises.name}</p>
+                  <p> &nbsp; Sets: {exercises.sets}</p>
+                  <p> &nbsp; Reps: {exercises.reps}</p>
+                  <p> &nbsp; Weight: {exercises.weight}</p>
                   <button>Edit</button>
                   <button>Delete</button>
                 </div>
