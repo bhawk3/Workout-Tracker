@@ -1,9 +1,6 @@
 
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, collection, setDoc, getDoc, updateDoc } from "firebase/firestore";
-
-
-
+import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -34,10 +31,7 @@ const UseDataBase = async () => {
     return [];
     }
 
-    return data.Exercises;
-
-          
-
+    return data.Exercises;     
 }
 
 const uploadDataToFirestore = async (newExercise) => {

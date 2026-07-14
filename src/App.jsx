@@ -21,7 +21,7 @@ console.log('workoutData from App.jsx:', newWorkoutData)
       <div id="dashboard-container" >
           {Object.entries(newWorkoutData).map(([date, exercises]) => (
             <div id="dashboard-card" key={date}>
-                <p>{exercises.date}</p>
+                <p>{date}</p>
               {Object.entries(exercises).map(([exerciseId]) => (
                 <div key={exerciseId} id="dashboard">
                   <p>&nbsp; Name: {exercises.name}</p>
