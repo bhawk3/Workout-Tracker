@@ -1,6 +1,7 @@
 
 import useGetWorkoutData from './hooks/useDashboard'
 import Form from './components/Form.jsx'
+import { deleteExercise } from "./hooks/useDataBase.js"
 import './App.css'
 
 function App() {
@@ -29,7 +30,7 @@ console.log('workoutData from App.jsx:', newWorkoutData)
                   <p> &nbsp; Reps: {exercises.reps}</p>
                   <p> &nbsp; Weight: {exercises.weight}</p>
                   <button>Edit</button>
-                  <button>Delete</button>
+                  <button onClick={() => deleteExercise(exerciseId)}>Delete</button>
                 </div>
               ))}
               <button>Add Exercise</button>

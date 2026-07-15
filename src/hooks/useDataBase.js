@@ -1,6 +1,6 @@
 
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc, deleteField } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -34,11 +34,13 @@ const UseDataBase = async () => {
     return data.Exercises;     
 }
 
-const uploadDataToFirestore = async (newExercise) => {
-    const docRef = doc(db, "Workouts", "eUqAK4cACxsatLZ4wtN0")
-    //You have to use Object.keys to get the length of the Exercises object
+//You have to use Object.keys to get the length of the Exercises object
     //Bc you cant use .length on an object 
     const nextIndex = Object.keys(await UseDataBase()).length + 1;
+
+const uploadDataToFirestore = async (newExercise) => {
+    const docRef = doc(db, "Workouts", "eUqAK4cACxsatLZ4wtN0")
+    
 
     let result = await updateDoc(docRef, {
         [`Exercises.${nextIndex}.date`]: newExercise.date,
@@ -51,4 +53,17 @@ const uploadDataToFirestore = async (newExercise) => {
     return newExercise
 }
 
-export {UseDataBase, uploadDataToFirestore};
+     //Delete functionality
+     //im gonna use exerciseId but I dont think itll work since im not importing app.jsx but maybe
+
+     /*On initial render this is running. Its not running when clicking the delete btn and its 
+     removing the last input and not the selected one */
+     async function deleteExercise(exerciseId) {
+        const docRef = doc(db, "Workouts", "eUqAK4cACxsatLZ4wtN0")
+        await updateDoc(docRef, {
+            [`Exercises.${exerciseId}`]: deleteField()
+        })
+        
+    }
+
+export {UseDataBase, uploadDataToFirestore, deleteExercise};

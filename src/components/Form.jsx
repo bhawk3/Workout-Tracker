@@ -53,11 +53,8 @@ const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
              
              */
               
-
             //saveNewWorkout(formValues) 
             console.log('Success:', result);
-
-            
 
             //Reset form 3 seconds after submission
             setSubmitMessageToggled(true)
@@ -74,6 +71,8 @@ const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
 
     }
      }
+
+
   return (
     <div>
         <form onSubmit={formEvent}   >
