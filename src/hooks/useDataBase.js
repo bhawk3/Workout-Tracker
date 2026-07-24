@@ -66,4 +66,4 @@ const uploadDataToFirestore = async (newExercise) => {
         
     }
 
-export {UseDataBase, uploadDataToFirestore, deleteExercise};
+export {UseDataBase, uploadDataToFirestore, deleteExercise, db};

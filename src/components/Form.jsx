@@ -5,18 +5,6 @@ import "../Form.css"
 
 
 
-
-//The form data is not functioning because I am not saving to localStorage anymore
-//It is still logging though, which is good.
-  
-/*function saveNewWorkout(workout) {
-  const saved = localStorage.getItem("New Workout")
-  const workouts = saved ? JSON.parse(saved) : []
-  workouts.push(workout)
-  console.log(workouts)
-  localStorage.setItem("New Workout", JSON.stringify(workouts))
-}*/
-
 const Form = () => {
 
 const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
@@ -26,7 +14,7 @@ const [submitMessageToggled, setSubmitMessageToggled] = useState(false)
         const form = e.currentTarget
         const formData = new FormData(form)
         const formValues = Object.fromEntries(formData)
-        //console.log(formValues)
+
         try {
 
             let result = await uploadDataToFirestore(formValues)
