@@ -20,10 +20,9 @@ console.log('workoutData from App.jsx:', newWorkoutData)
         </div>
       </section>
       <div id="dashboard-container" >
-          {Object.entries(newWorkoutData).map(([date, exercises]) => (
-            <div id="dashboard-card" key={date}>
-                <p>{date}</p>
-              {Object.entries(exercises).map(([exerciseId]) => (
+          {Object.entries(newWorkoutData).map(([exerciseId, exercises]) => (
+            <div id="dashboard-card" key={exerciseId}>
+                <p>{exerciseId}</p>
                 <div key={exerciseId} id="dashboard">
                   <p>&nbsp; Name: {exercises.name}</p>
                   <p> &nbsp; Sets: {exercises.sets}</p>
@@ -32,7 +31,6 @@ console.log('workoutData from App.jsx:', newWorkoutData)
                   <button>Edit</button>
                   <button onClick={() => deleteExercise(exerciseId)}>Delete</button>
                 </div>
-              ))}
               <button>Add Exercise</button>
             </div>
           ))}

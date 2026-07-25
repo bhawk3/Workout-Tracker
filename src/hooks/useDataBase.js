@@ -63,6 +63,7 @@ const uploadDataToFirestore = async (newExercise) => {
         await updateDoc(docRef, {
             [`Exercises.${exerciseId}`]: deleteField()
         })
+        console.log(`Exercise with ID ${exerciseId} deleted successfully.`);
         
     }
 
