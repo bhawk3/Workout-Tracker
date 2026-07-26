@@ -2,6 +2,7 @@
 import useGetWorkoutData from './hooks/useDashboard'
 import Form from './components/Form.jsx'
 import { deleteExercise } from "./hooks/useDataBase.js"
+import { useState } from "react"
 import './App.css'
 
 function App() {
@@ -9,14 +10,18 @@ function App() {
   let newWorkoutData = workoutData
   
 console.log('workoutData from App.jsx:', newWorkoutData)
-//Left off working on updating DOM from DB
-//The DOM doesn't update on form submission
+
+const [showForm, setShowForm] = useState(false)
+
+
+
   return (
     <>
       <section id="center">
         <div className="hero">
           <h1>Workout Tracker</h1>
-<Form />
+         <button onClick={() => setShowForm(true)}>Add Workout</button>
+{showForm && <Form />}
         </div>
       </section>
       <div id="dashboard-container" >
