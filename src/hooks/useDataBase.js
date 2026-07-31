@@ -67,4 +67,14 @@ const uploadDataToFirestore = async (newExercise) => {
         
     }
 
-export {UseDataBase, uploadDataToFirestore, deleteExercise, db};
+
+    //Edit button functionality
+  async function editExercise(exerciseId) {
+        const docRef = doc(db, "Workouts", "eUqAK4cACxsatLZ4wtN0")
+        await updateDoc(docRef, {
+            [`Exercises.${exerciseId}`]: uploadDataToFirestore()
+        })
+        console.log(`Exercise with ID ${exerciseId} edited successfully.`);
+    }
+
+export {UseDataBase, uploadDataToFirestore, deleteExercise, editExercise, db};

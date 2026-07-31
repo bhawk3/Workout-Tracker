@@ -1,7 +1,7 @@
 
 import useGetWorkoutData from './hooks/useDashboard'
 import Form from './components/Form.jsx'
-import { deleteExercise } from "./hooks/useDataBase.js"
+import { deleteExercise, editExercise } from "./hooks/useDataBase.js"
 import { useState } from "react"
 import './App.css'
 
@@ -29,11 +29,12 @@ const [showForm, setShowForm] = useState(false)
             <div id="dashboard-card" key={exerciseId}>
                 <p>{exerciseId}</p>
                 <div key={exerciseId} id="dashboard">
+                  <p>&nbsp; Date: {exercises.date}</p>
                   <p>&nbsp; Name: {exercises.name}</p>
                   <p> &nbsp; Sets: {exercises.sets}</p>
                   <p> &nbsp; Reps: {exercises.reps}</p>
                   <p> &nbsp; Weight: {exercises.weight}</p>
-                  <button>Edit</button>
+                  <button onClick={() => {editExercise(exerciseId); setShowForm(true);}}>Edit</button>
                   <button onClick={() => deleteExercise(exerciseId)}>Delete</button>
                 </div>
               <button>Add Exercise</button>
