@@ -34,23 +34,20 @@ const UseDataBase = async () => {
     return data.Exercises;     
 }
 
-//You have to use Object.keys to get the length of the Exercises object
-    //Bc you cant use .length on an object 
-    const nextIndex = Object.keys(await UseDataBase()).length + 1;
-
 const uploadDataToFirestore = async (newExercise) => {
-    const docRef = doc(db, "Workouts", "eUqAK4cACxsatLZ4wtN0")
-    
+  const docRef = doc(db, "Workouts", "eUqAK4cACxsatLZ4wtN0")
+  const currentExercises = await UseDataBase();
+  const nextIndex = Object.keys(currentExercises).length + 1;
 
-    let result = await updateDoc(docRef, {
-        [`Exercises.${nextIndex}.date`]: newExercise.date,
-        [`Exercises.${nextIndex}.name`]: newExercise.name,
-        [`Exercises.${nextIndex}.sets`]: parseInt(newExercise.sets),
-        [`Exercises.${nextIndex}.reps`]: parseInt(newExercise.reps),
-        [`Exercises.${nextIndex}.weight`]: parseInt(newExercise.weight)
+  await updateDoc(docRef, {
+    [`Exercises.${nextIndex}.date`]: newExercise.date,
+    [`Exercises.${nextIndex}.name`]: newExercise.name,
+    [`Exercises.${nextIndex}.sets`]: parseInt(newExercise.sets, 10),
+    [`Exercises.${nextIndex}.reps`]: parseInt(newExercise.reps, 10),
+    [`Exercises.${nextIndex}.weight`]: parseInt(newExercise.weight, 10)
+  })
 
-    })
-    return newExercise
+  return newExercise
 }
 
      //Delete functionality
@@ -69,10 +66,14 @@ const uploadDataToFirestore = async (newExercise) => {
 
 
     //Edit button functionality
-  async function editExercise(exerciseId) {
+  async function editExercise(exerciseId, updatedExercise) {
         const docRef = doc(db, "Workouts", "eUqAK4cACxsatLZ4wtN0")
         await updateDoc(docRef, {
-            [`Exercises.${exerciseId}`]: uploadDataToFirestore()
+            [`Exercises.${exerciseId}.date`]: updatedExercise.date,
+            [`Exercises.${exerciseId}.name`]: updatedExercise.name,
+            [`Exercises.${exerciseId}.sets`]: parseInt(updatedExercise.sets),
+            [`Exercises.${exerciseId}.reps`]: parseInt(updatedExercise.reps),
+            [`Exercises.${exerciseId}.weight`]: parseInt(updatedExercise.weight)
         })
         console.log(`Exercise with ID ${exerciseId} edited successfully.`);
     }
